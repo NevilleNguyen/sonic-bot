@@ -3,13 +3,12 @@ import { SFCClient } from './sfc-client.js';
 import { TelegramNotifier, Emoji, formatTxLink, formatAddressLink, formatAmount } from '../notification/telegram.js';
 import { getConfig, getContactName, getValidatorName } from '../config/config.js';
 import { weiToFloat } from '../utils/format.js';
+import { getSonicPrice, formatUsdValue } from '../services/price.js';
 import type {
   SFCValidator,
   SFCDelegateInfo,
   SFCUndelegateInfo,
   SFCRewardInfo,
-  SFCLockedUpStake,
-  SFCUnlockedStake,
   TransferLog,
 } from '../types/index.js';
 
@@ -58,8 +57,6 @@ export class SonicBot {
     this.watchDelegateEvents();
     this.watchUndelegateEvents();
     this.watchClaimRewardEvents();
-    this.watchLockedUpStakeEvents();
-    this.watchUnlockedStakeEvents();
     this.watchSTransfers();
 
     logger.info('All watchers started');
@@ -152,44 +149,6 @@ export class SonicBot {
   }
 
   /**
-   * Watch for locked up stake events
-   */
-  private watchLockedUpStakeEvents(): void {
-    logger.info('Starting LockedUpStake watcher');
-
-    this.sfcClient.watchLockedUpStake(
-      async (info) => {
-        if (info.amount > this.minStakingAmount) {
-          logger.debug({ txHash: info.txHash }, 'New locked up stake event');
-          await this.sendLockedUpStakeMessage(info);
-        }
-      },
-      (error) => {
-        logger.error({ err: error }, 'LockedUpStake watcher error');
-      }
-    );
-  }
-
-  /**
-   * Watch for unlocked stake events
-   */
-  private watchUnlockedStakeEvents(): void {
-    logger.info('Starting UnlockedStake watcher');
-
-    this.sfcClient.watchUnlockedStake(
-      async (info) => {
-        if (info.amount > this.minStakingAmount) {
-          logger.debug({ txHash: info.txHash }, 'New unlocked stake event');
-          await this.sendUnlockedStakeMessage(info);
-        }
-      },
-      (error) => {
-        logger.error({ err: error }, 'UnlockedStake watcher error');
-      }
-    );
-  }
-
-  /**
    * Watch for large S token transfers
    */
   private watchSTransfers(): void {
@@ -247,8 +206,10 @@ export class SonicBot {
     const txLink = formatTxLink(this.explorerUrl, info.txHash, 'delegation event');
     const validatorName = getValidatorName(info.toValidatorId);
     const delegatorName = getContactName(info.delegator);
+    const price = await getSonicPrice();
+    const usdValue = formatUsdValue(info.amount, price);
 
-    const msg = `${Emoji.CHECK_MARK} A ${txLink} of <b>${formatAmount(info.amount)} S</b> from <code>${delegatorName}</code> to validator ${validatorName}`;
+    const msg = `${Emoji.CHECK_MARK} A ${txLink} of <b>${formatAmount(info.amount)} S</b>${usdValue} from <code>${delegatorName}</code> to validator ${validatorName}`;
     await this.sendMessage(msg);
   }
 
@@ -256,8 +217,10 @@ export class SonicBot {
     const txLink = formatTxLink(this.explorerUrl, info.txHash, 'undelegation event');
     const validatorName = getValidatorName(info.toValidatorId);
     const delegatorName = getContactName(info.delegator);
+    const price = await getSonicPrice();
+    const usdValue = formatUsdValue(info.amount, price);
 
-    const msg = `${Emoji.CROSS_MARK} An ${txLink} of <b>${formatAmount(info.amount)} S</b> from <code>${delegatorName}</code> to validator ${validatorName}`;
+    const msg = `${Emoji.CROSS_MARK} An ${txLink} of <b>${formatAmount(info.amount)} S</b>${usdValue} from <code>${delegatorName}</code> to validator ${validatorName}`;
     await this.sendMessage(msg);
   }
 
@@ -265,26 +228,10 @@ export class SonicBot {
     const txLink = formatTxLink(this.explorerUrl, info.txHash, 'reward claim event');
     const validatorName = getValidatorName(info.toValidatorId);
     const delegatorName = getContactName(info.delegator);
+    const price = await getSonicPrice();
+    const usdValue = formatUsdValue(info.unlockedReward, price);
 
-    const msg = `${Emoji.STAR} A ${txLink} of <b>${formatAmount(info.unlockedReward)} S</b> from <code>${delegatorName}</code> to validator ${validatorName}`;
-    await this.sendMessage(msg);
-  }
-
-  private async sendLockedUpStakeMessage(info: SFCLockedUpStake): Promise<void> {
-    const txLink = formatTxLink(this.explorerUrl, info.txHash, 'locked up stake event');
-    const validatorName = getValidatorName(info.validatorId);
-    const delegatorName = getContactName(info.delegator);
-
-    const msg = `${Emoji.LOCK} A ${txLink} of <b>${formatAmount(info.amount)} S</b> from <code>${delegatorName}</code> to validator ${validatorName}`;
-    await this.sendMessage(msg);
-  }
-
-  private async sendUnlockedStakeMessage(info: SFCUnlockedStake): Promise<void> {
-    const txLink = formatTxLink(this.explorerUrl, info.txHash, 'unlocked stake event');
-    const validatorName = getValidatorName(info.validatorId);
-    const delegatorName = getContactName(info.delegator);
-
-    const msg = `${Emoji.UNLOCK} An ${txLink} of <b>${formatAmount(info.amount)} S</b> from <code>${delegatorName}</code> to validator ${validatorName}`;
+    const msg = `${Emoji.STAR} A ${txLink} of <b>${formatAmount(info.unlockedReward)} S</b>${usdValue} from <code>${delegatorName}</code> to validator ${validatorName}`;
     await this.sendMessage(msg);
   }
 
@@ -292,8 +239,10 @@ export class SonicBot {
     const txLink = formatTxLink(this.explorerUrl, transfer.txHash, 'transfer');
     const fromName = getContactName(transfer.from);
     const toName = getContactName(transfer.to);
+    const price = await getSonicPrice();
+    const usdValue = formatUsdValue(transfer.amount, price);
 
-    const msg = `${Emoji.WHALE} Big ${txLink} of <b>${formatAmount(transfer.amount)} S</b> from <code>${fromName}</code> to <code>${toName}</code>`;
+    const msg = `${Emoji.WHALE} Big ${txLink} of <b>${formatAmount(transfer.amount)} S</b>${usdValue} from <code>${fromName}</code> to <code>${toName}</code>`;
     await this.sendMessage(msg);
   }
 

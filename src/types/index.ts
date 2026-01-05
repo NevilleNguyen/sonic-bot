@@ -74,24 +74,6 @@ export interface SFCRewardInfo {
   txHash: string;
 }
 
-export interface SFCLockedUpStake {
-  delegator: string;
-  validatorId: bigint;
-  duration: bigint;
-  amount: number;
-  blockNumber: bigint;
-  txHash: string;
-}
-
-export interface SFCUnlockedStake {
-  delegator: string;
-  validatorId: bigint;
-  amount: number;
-  penalty: number;
-  blockNumber: bigint;
-  txHash: string;
-}
-
 export interface TransferLog {
   blockNumber: bigint;
   txHash: string;

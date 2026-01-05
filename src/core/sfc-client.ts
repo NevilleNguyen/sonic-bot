@@ -7,8 +7,6 @@ import type {
   SFCDelegateInfo,
   SFCUndelegateInfo,
   SFCRewardInfo,
-  SFCLockedUpStake,
-  SFCUnlockedStake,
 } from '../types/index.js';
 import pino from 'pino';
 
@@ -169,56 +167,6 @@ export class SFCClient {
         }
       }
     );
-  }
-
-  /**
-   * Watch for LockedUpStake events
-   */
-  watchLockedUpStake(
-    callback: (info: SFCLockedUpStake) => void,
-    onError: (error: Error) => void
-  ): void {
-    this.wsContract.on('LockedUpStake', (delegator, validatorID, duration, amount, event: ContractEventPayload) => {
-      try {
-        const log = event.log;
-        const info: SFCLockedUpStake = {
-          delegator,
-          validatorId: validatorID,
-          duration,
-          amount: weiToFloat(amount),
-          blockNumber: BigInt(log.blockNumber),
-          txHash: log.transactionHash,
-        };
-        callback(info);
-      } catch (err) {
-        onError(err as Error);
-      }
-    });
-  }
-
-  /**
-   * Watch for UnlockedStake events
-   */
-  watchUnlockedStake(
-    callback: (info: SFCUnlockedStake) => void,
-    onError: (error: Error) => void
-  ): void {
-    this.wsContract.on('UnlockedStake', (delegator, validatorID, amount, penalty, event: ContractEventPayload) => {
-      try {
-        const log = event.log;
-        const info: SFCUnlockedStake = {
-          delegator,
-          validatorId: validatorID,
-          amount: weiToFloat(amount),
-          penalty: weiToFloat(penalty),
-          blockNumber: BigInt(log.blockNumber),
-          txHash: log.transactionHash,
-        };
-        callback(info);
-      } catch (err) {
-        onError(err as Error);
-      }
-    });
   }
 
   /**

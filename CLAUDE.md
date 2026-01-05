@@ -23,6 +23,8 @@ sonic-bot/
 │   ├── core/
 │   │   ├── bot.ts               # Main orchestrator, manages all watchers
 │   │   └── sfc-client.ts        # SFC contract interactions via ethers.js
+│   ├── services/
+│   │   └── price.ts             # CoinGecko price service for USD values
 │   ├── notification/
 │   │   └── telegram.ts          # Telegram bot and message formatting
 │   ├── contracts/
@@ -45,12 +47,12 @@ sonic-bot/
 
 ## Events Monitored
 1. **CreatedValidator** - New validator creation
-2. **Delegated** - Staking/delegation events
-3. **Undelegated** - Unstaking events
-4. **ClaimedRewards** - Reward claim events
-5. **LockedUpStake** - Lock-up stake events
-6. **UnlockedStake** - Unlock stake events
-7. **S Token Transfers** - Large native token transfers
+2. **Delegated** - Staking/delegation events (with USD value)
+3. **Undelegated** - Unstaking events (with USD value)
+4. **ClaimedRewards** - Reward claim events (with USD value)
+5. **S Token Transfers** - Large native token transfers (with USD value)
+
+All monetary events include real-time USD price conversion via CoinGecko API.
 
 ## Configuration
 1. Copy `.env.example` to `.env` and update:
@@ -98,6 +100,12 @@ Configuration management:
 - Loads configuration from environment variables
 - Provides contact/validator name lookups
 - Maintains in-memory lookup maps
+
+### src/services/price.ts
+Price service for USD conversion:
+- Fetches S token price from CoinGecko API (coin ID: sonic-3)
+- 1-minute cache to minimize API calls
+- Graceful fallback to cached price on API errors
 
 ## Technology Stack
 - **Runtime**: Node.js with ES modules

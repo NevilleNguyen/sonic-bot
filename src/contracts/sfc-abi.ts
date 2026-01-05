@@ -56,33 +56,11 @@ export const SFC_ABI = [
     anonymous: false,
     inputs: [
       { indexed: true, internalType: 'address', name: 'delegator', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'validatorID', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'duration', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'amount', type: 'uint256' },
-    ],
-    name: 'LockedUpStake',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: true, internalType: 'address', name: 'delegator', type: 'address' },
       { indexed: true, internalType: 'uint256', name: 'toValidatorID', type: 'uint256' },
       { indexed: true, internalType: 'uint256', name: 'wrID', type: 'uint256' },
       { indexed: false, internalType: 'uint256', name: 'amount', type: 'uint256' },
     ],
     name: 'Undelegated',
-    type: 'event',
-  },
-  {
-    anonymous: false,
-    inputs: [
-      { indexed: true, internalType: 'address', name: 'delegator', type: 'address' },
-      { indexed: true, internalType: 'uint256', name: 'validatorID', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'amount', type: 'uint256' },
-      { indexed: false, internalType: 'uint256', name: 'penalty', type: 'uint256' },
-    ],
-    name: 'UnlockedStake',
     type: 'event',
   },
   {
