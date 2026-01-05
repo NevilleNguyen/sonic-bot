@@ -3,5 +3,3 @@ dist/
 *.log
 .DS_Store
 .env
-data/contacts.json
-data/validators.json

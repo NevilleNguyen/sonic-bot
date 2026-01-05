@@ -1,0 +1,150 @@
+[
+  {
+    "address": "0xA4E471dbfe8C95d4c44f520b19CEe436c01c3267",
+    "name": "Binance"
+  },
+  {
+    "address": "0x1ab4973a48dc892cd9971ece8e01dcc7688f8f23",
+    "name": "Bitget"
+  },
+  {
+    "address": "0x678cBCa3a5Cc152Ae00F77b85B14151D761b44Be",
+    "name": "Bybit"
+  },
+  {
+    "address": "0x98ADeF6F2ac8572ec48965509d69A8Dd5E8BbA9D",
+    "name": "Binance"
+  },
+  {
+    "address": "0x7DAFbA1d69F6C01AE7567Ffd7b046Ca03B706f83",
+    "name": "Kraken"
+  },
+  {
+    "address": "0xd2DD7b597Fd2435b6dB61ddf48544fd931e6869F",
+    "name": "Kraken"
+  },
+  {
+    "address": "0xf89d7b9c864f589bbF53a82105107622B35EaA40",
+    "name": "Bybit Hot Wallet"
+  },
+  {
+    "address": "0x63783f206f22A3eec1E4D0081a49Ae419D02ebe4",
+    "name": "Bybit"
+  },
+  {
+    "address": "0x76eC5A0D3632b2133d9f1980903305B62678Fbd3",
+    "name": "BTC Turk"
+  },
+  {
+    "address": "0x77FB357f55BEf5a70d30663955F8C9f35794DF0E",
+    "name": "eToro"
+  },
+  {
+    "address": "0x680178D61d910736153991660c5710841C440ec7",
+    "name": "MEXC"
+  },
+  {
+    "address": "0x69F57499e75d18d69261d081412e794b33B0E91e",
+    "name": "Kraken"
+  },
+  {
+    "address": "0x095fc6bc0F901e64Ba8170819Bb126ef2F9590cb",
+    "name": "Crypto.com"
+  },
+  {
+    "address": "0x611f7bF868a6212f871e89F7e44684045DdFB09d",
+    "name": "OKX"
+  },
+  {
+    "address": "0x2B0b6CBbE52F7e14B0d013bC3137F169643eE657",
+    "name": "Crypto.com"
+  },
+  {
+    "address": "0x2c87f099F80DA74998c02212c88435C8E0bD247D",
+    "name": "Binance US"
+  },
+  {
+    "address": "0xC882b111A75C0c657fC507C04FbFcD2cC984F071",
+    "name": "Gate"
+  },
+  {
+    "address": "0x43684D03D81d3a4C70da68feBDd61029d426F042",
+    "name": "Binance"
+  },
+  {
+    "address": "0x77134cbC06cB00b66F4c7e623D5fdBF6777635EC",
+    "name": "Bitfinex"
+  },
+  {
+    "address": "0x08A7dadA63b230AE3C4fa9C10B16cA45A1323ee8",
+    "name": "OKX"
+  },
+  {
+    "address": "0xF4E6DEEA1B4DA85C2d68DB8d771d37EC1148B853",
+    "name": "Coinhako"
+  },
+  {
+    "address": "0x0529ea5885702715e83923c59746ae8734c553B7",
+    "name": "Bitpanda"
+  },
+  {
+    "address": "0xc3681709ee476308b45812EAbE0EB22F3b816880",
+    "name": "Paribu"
+  },
+  {
+    "address": "0x909C0Bc97dBc8ee1B802d949eBf97B406aedC01F",
+    "name": "Ceffu"
+  },
+  {
+    "address": "0x0D0707963952f2fBA59dD06f2b425ace40b492Fe",
+    "name": "Gate"
+  },
+  {
+    "address": "0x9d859Fc0B6d7fF62d37E2a1fd0C0A275C7795CE6",
+    "name": "Bitvavo"
+  },
+  {
+    "address": "0x968F50D98EE29b293aE50b43052a7b14d3846994",
+    "name": "Bithumb"
+  },
+  {
+    "address": "0xf35A6bD6E0459A4B53A27862c51A2A7292b383d1",
+    "name": "CoinSpot"
+  },
+  {
+    "address": "0xD3a22590f8243f8E83Ac230D1842C9Af0404C4A1",
+    "name": "Ceffu"
+  },
+  {
+    "address": "0x17A30350771d02409046A683b18Fe1C13cCFC4A8",
+    "name": "Kucoin"
+  },
+  {
+    "address": "0x1157A2076b9bB22a85CC2C162f20fAB3898F4101",
+    "name": "FalconX"
+  },
+  {
+    "address": "0xE3EcD65cf2aD2Eba2AA2Be1d0894753B2172aBD1",
+    "name": "Bitso"
+  },
+  {
+    "address": "0x18709E89BD403F470088aBDAcEbE86CC60dda12e",
+    "name": "Huobi"
+  },
+  {
+    "address": "0xE66BAa0B612003AF308D78f066Bbdb9a5e00fF6c",
+    "name": "Coinhako"
+  },
+  {
+    "address": "0xb8e6D31e7B212b2b7250EE9c26C56cEBBFBe6B23",
+    "name": "Kucoin"
+  },
+  {
+    "address": "0x8c7Efd5B04331EFC618e8006f19019A3Dc88973e",
+    "name": "CoinDCX"
+  },
+  {
+    "address": "0x4fdFE365436b5273a42F135C6a6244A20404271E",
+    "name": "Binance"
+  }
+]
