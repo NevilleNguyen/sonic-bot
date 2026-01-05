@@ -1,24 +1,78 @@
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import 'dotenv/config';
+import { readFileSync, existsSync } from 'fs';
+import { resolve } from 'path';
 import type { AppConfig, ContactEntry, ValidatorEntry } from '../types/index.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 let config: AppConfig | null = null;
 let contactBook: Map<string, string> = new Map();
 let validatorBook: Map<number, string> = new Map();
 
 /**
- * Load configuration from JSON file
+ * Get required environment variable or throw
  */
-export function loadConfig(configPath?: string): AppConfig {
+function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+  return value;
+}
+
+/**
+ * Get optional environment variable with default
+ */
+function getEnv(name: string, defaultValue: string): string {
+  return process.env[name] || defaultValue;
+}
+
+/**
+ * Load JSON file, returns empty array if file doesn't exist
+ */
+function loadJsonFile<T>(filePath: string): T[] {
+  const resolvedPath = resolve(filePath);
+  if (!existsSync(resolvedPath)) {
+    return [];
+  }
+  try {
+    const raw = readFileSync(resolvedPath, 'utf-8');
+    return JSON.parse(raw);
+  } catch (err) {
+    throw new Error(`Failed to parse JSON file ${filePath}: ${err}`);
+  }
+}
+
+/**
+ * Load configuration from environment variables
+ */
+export function loadConfig(): AppConfig {
   if (config) return config;
 
-  const path = configPath || join(__dirname, '../../config/mainnet.json');
-  const raw = readFileSync(path, 'utf-8');
-  config = JSON.parse(raw) as AppConfig;
+  // Load contact and validator books from JSON files
+  const contactBookPath = getEnv('CONTACT_BOOK_PATH', 'data/contacts.json');
+  const validatorBookPath = getEnv('VALIDATOR_BOOK_PATH', 'data/validators.json');
+
+  const contacts = loadJsonFile<ContactEntry>(contactBookPath);
+  const validators = loadJsonFile<ValidatorEntry>(validatorBookPath);
+
+  config = {
+    sonic_chain: {
+      sfc_contract_address: getEnv('SFC_CONTRACT_ADDRESS', '0xFC00FACE00000000000000000000000000000000'),
+      rpc_endpoint: getEnv('RPC_ENDPOINT', 'https://rpc.soniclabs.com'),
+      ws_endpoint: getEnv('WS_ENDPOINT', 'wss://rpc.soniclabs.com'),
+      explorer_tx_endpoint: getEnv('EXPLORER_TX_ENDPOINT', 'https://sonicscan.org'),
+    },
+    thresholds: {
+      min_staking_amount: parseFloat(getEnv('MIN_STAKING_AMOUNT', '1000')),
+      min_claim_amount: parseFloat(getEnv('MIN_CLAIM_AMOUNT', '1000')),
+      min_transfer_amount: parseFloat(getEnv('MIN_TRANSFER_AMOUNT', '1000')),
+    },
+    telegram: {
+      token: requireEnv('TELEGRAM_TOKEN'),
+      chat_id: parseInt(requireEnv('TELEGRAM_CHAT_ID'), 10),
+    },
+    contact_book: contacts,
+    validator_book: validators,
+  };
 
   // Build lookup maps
   for (const entry of config.contact_book) {

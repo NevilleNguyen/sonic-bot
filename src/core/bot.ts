@@ -89,7 +89,7 @@ export class SonicBot {
         await this.sendCreatedValidatorMessage(validator);
       },
       (error) => {
-        logger.error({ error }, 'CreatedValidator watcher error');
+        logger.error({ err: error }, 'CreatedValidator watcher error');
       }
     );
   }
@@ -108,7 +108,7 @@ export class SonicBot {
         }
       },
       (error) => {
-        logger.error({ error }, 'Delegated watcher error');
+        logger.error({ err: error }, 'Delegated watcher error');
       }
     );
   }
@@ -127,7 +127,7 @@ export class SonicBot {
         }
       },
       (error) => {
-        logger.error({ error }, 'Undelegated watcher error');
+        logger.error({ err: error }, 'Undelegated watcher error');
       }
     );
   }
@@ -146,7 +146,7 @@ export class SonicBot {
         }
       },
       (error) => {
-        logger.error({ error }, 'ClaimedRewards watcher error');
+        logger.error({ err: error }, 'ClaimedRewards watcher error');
       }
     );
   }
@@ -165,7 +165,7 @@ export class SonicBot {
         }
       },
       (error) => {
-        logger.error({ error }, 'LockedUpStake watcher error');
+        logger.error({ err: error }, 'LockedUpStake watcher error');
       }
     );
   }
@@ -184,7 +184,7 @@ export class SonicBot {
         }
       },
       (error) => {
-        logger.error({ error }, 'UnlockedStake watcher error');
+        logger.error({ err: error }, 'UnlockedStake watcher error');
       }
     );
   }
@@ -208,7 +208,9 @@ export class SonicBot {
 
           for (const tx of block.prefetchedTransactions) {
             // Only process simple value transfers (no input data)
-            if (tx.data !== '0x' || !tx.to || !tx.value) continue;
+            // Check for empty data: '0x', '0x0', '0x00', etc.
+            const isEmptyData = !tx.data || tx.data === '0x' || /^0x0*$/.test(tx.data);
+            if (!isEmptyData || !tx.to || !tx.value) continue;
 
             const amount = weiToFloat(tx.value);
             if (amount > this.minTransferAmount) {
@@ -219,16 +221,16 @@ export class SonicBot {
                 to: tx.to,
                 amount,
               };
-              logger.debug({ txHash: tx.hash }, 'New large transfer event');
+              logger.debug({ txHash: tx.hash, amount }, 'Large transfer detected');
               await this.sendBigTransferMessage(transferLog);
             }
           }
         } catch (error) {
-          logger.error({ error, blockNumber: blockNumber.toString() }, 'Error processing block');
+          logger.error({ err: error, blockNumber: blockNumber.toString() }, 'Error processing block');
         }
       },
       (error) => {
-        logger.error({ error }, 'Block watcher error');
+        logger.error({ err: error }, 'Block watcher error');
       }
     );
   }
@@ -293,6 +295,18 @@ export class SonicBot {
 
     const msg = `${Emoji.WHALE} Big ${txLink} of <b>${formatAmount(transfer.amount)} S</b> from <code>${fromName}</code> to <code>${toName}</code>`;
     await this.sendMessage(msg);
+  }
+
+  /**
+   * Send a crash/shutdown notification
+   */
+  async sendShutdownNotification(reason: string): Promise<void> {
+    const msg = `\u{1F6A8} Sonic bot stopped: ${reason}`;
+    try {
+      await this.telegram.sendMessage(msg);
+    } catch (error) {
+      logger.error({ error }, 'Failed to send shutdown notification');
+    }
   }
 
   /**

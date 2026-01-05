@@ -1,4 +1,4 @@
-import { Contract, WebSocketProvider, JsonRpcProvider, Log } from 'ethers';
+import { Contract, WebSocketProvider, JsonRpcProvider, ContractEventPayload } from 'ethers';
 import { SFC_ABI } from '../contracts/sfc-abi.js';
 import { getConfig } from '../config/config.js';
 import { weiToFloat } from '../utils/format.js';
@@ -100,14 +100,15 @@ export class SFCClient {
     callback: (info: SFCDelegateInfo) => void,
     onError: (error: Error) => void
   ): void {
-    this.wsContract.on('Delegated', (delegator, toValidatorID, amount, event: Log) => {
+    this.wsContract.on('Delegated', (delegator, toValidatorID, amount, event: ContractEventPayload) => {
       try {
+        const log = event.log;
         const info: SFCDelegateInfo = {
           delegator,
           toValidatorId: toValidatorID,
           amount: weiToFloat(amount),
-          blockNumber: BigInt(event.blockNumber),
-          txHash: event.transactionHash,
+          blockNumber: BigInt(log.blockNumber),
+          txHash: log.transactionHash,
         };
         callback(info);
       } catch (err) {
@@ -123,15 +124,16 @@ export class SFCClient {
     callback: (info: SFCUndelegateInfo) => void,
     onError: (error: Error) => void
   ): void {
-    this.wsContract.on('Undelegated', (delegator, toValidatorID, wrID, amount, event: Log) => {
+    this.wsContract.on('Undelegated', (delegator, toValidatorID, wrID, amount, event: ContractEventPayload) => {
       try {
+        const log = event.log;
         const info: SFCUndelegateInfo = {
           delegator,
           toValidatorId: toValidatorID,
           amount: weiToFloat(amount),
           wrId: wrID,
-          blockNumber: BigInt(event.blockNumber),
-          txHash: event.transactionHash,
+          blockNumber: BigInt(log.blockNumber),
+          txHash: log.transactionHash,
         };
         callback(info);
       } catch (err) {
@@ -149,16 +151,17 @@ export class SFCClient {
   ): void {
     this.wsContract.on(
       'ClaimedRewards',
-      (delegator, toValidatorID, lockupExtraReward, lockupBaseReward, unlockedReward, event: Log) => {
+      (delegator, toValidatorID, lockupExtraReward, lockupBaseReward, unlockedReward, event: ContractEventPayload) => {
         try {
+          const log = event.log;
           const info: SFCRewardInfo = {
             delegator,
             toValidatorId: toValidatorID,
             lockupExtraReward: weiToFloat(lockupExtraReward),
             lockupBaseReward: weiToFloat(lockupBaseReward),
             unlockedReward: weiToFloat(unlockedReward),
-            blockNumber: BigInt(event.blockNumber),
-            txHash: event.transactionHash,
+            blockNumber: BigInt(log.blockNumber),
+            txHash: log.transactionHash,
           };
           callback(info);
         } catch (err) {
@@ -175,15 +178,16 @@ export class SFCClient {
     callback: (info: SFCLockedUpStake) => void,
     onError: (error: Error) => void
   ): void {
-    this.wsContract.on('LockedUpStake', (delegator, validatorID, duration, amount, event: Log) => {
+    this.wsContract.on('LockedUpStake', (delegator, validatorID, duration, amount, event: ContractEventPayload) => {
       try {
+        const log = event.log;
         const info: SFCLockedUpStake = {
           delegator,
           validatorId: validatorID,
           duration,
           amount: weiToFloat(amount),
-          blockNumber: BigInt(event.blockNumber),
-          txHash: event.transactionHash,
+          blockNumber: BigInt(log.blockNumber),
+          txHash: log.transactionHash,
         };
         callback(info);
       } catch (err) {
@@ -199,15 +203,16 @@ export class SFCClient {
     callback: (info: SFCUnlockedStake) => void,
     onError: (error: Error) => void
   ): void {
-    this.wsContract.on('UnlockedStake', (delegator, validatorID, amount, penalty, event: Log) => {
+    this.wsContract.on('UnlockedStake', (delegator, validatorID, amount, penalty, event: ContractEventPayload) => {
       try {
+        const log = event.log;
         const info: SFCUnlockedStake = {
           delegator,
           validatorId: validatorID,
           amount: weiToFloat(amount),
           penalty: weiToFloat(penalty),
-          blockNumber: BigInt(event.blockNumber),
-          txHash: event.transactionHash,
+          blockNumber: BigInt(log.blockNumber),
+          txHash: log.transactionHash,
         };
         callback(info);
       } catch (err) {

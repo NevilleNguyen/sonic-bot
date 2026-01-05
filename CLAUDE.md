@@ -19,7 +19,7 @@ sonic-bot/
 ├── src/
 │   ├── index.ts                 # Entry point, signal handling
 │   ├── config/
-│   │   └── config.ts            # Configuration loader
+│   │   └── config.ts            # Configuration loader (from env vars)
 │   ├── core/
 │   │   ├── bot.ts               # Main orchestrator, manages all watchers
 │   │   └── sfc-client.ts        # SFC contract interactions via ethers.js
@@ -31,9 +31,13 @@ sonic-bot/
 │   │   └── index.ts             # TypeScript interfaces
 │   └── utils/
 │       └── format.ts            # Wei conversion, formatting utilities
-├── config/
-│   ├── mainnet.json             # Main configuration (gitignored)
-│   └── mainnet.example.json     # Example configuration
+├── .env                         # Environment config (gitignored)
+├── .env.example                 # Example environment config
+├── data/
+│   ├── contacts.json            # Contact address book (gitignored)
+│   ├── contacts.example.json    # Example contacts
+│   ├── validators.json          # Validator name book (gitignored)
+│   └── validators.example.json  # Example validators
 ├── package.json
 ├── tsconfig.json
 └── CLAUDE.md
@@ -49,29 +53,30 @@ sonic-bot/
 7. **S Token Transfers** - Large native token transfers
 
 ## Configuration
-Copy `config/mainnet.example.json` to `config/mainnet.json` and update:
-- `telegram.token` - Your Telegram bot token from @BotFather
-- `telegram.chat_id` - Your Telegram chat/group ID
-- `thresholds.*` - Minimum amounts to trigger notifications
-- `contact_book` - Address to name mappings
-- `validator_book` - Validator ID to name mappings
+1. Copy `.env.example` to `.env` and update:
+   - `TELEGRAM_TOKEN` - Your Telegram bot token from @BotFather
+   - `TELEGRAM_CHAT_ID` - Your Telegram chat/group ID
+   - `MIN_STAKING_AMOUNT`, `MIN_CLAIM_AMOUNT`, `MIN_TRANSFER_AMOUNT` - Thresholds
+
+2. Copy `data/contacts.example.json` to `data/contacts.json` for address labels
+3. Copy `data/validators.example.json` to `data/validators.json` for validator names
 
 ## Commands
 ```bash
 # Install dependencies
-npm install
+pnpm install
 
 # Run in development mode (with hot reload)
-npm run dev
+pnpm dev
 
 # Type check
-npm run typecheck
+pnpm typecheck
 
 # Build for production
-npm run build
+pnpm build
 
 # Run production build
-npm start
+pnpm start
 ```
 
 ## Key Files
@@ -90,7 +95,7 @@ Ethers.js wrapper for SFC contract that:
 
 ### src/config/config.ts
 Configuration management:
-- Loads JSON config file
+- Loads configuration from environment variables
 - Provides contact/validator name lookups
 - Maintains in-memory lookup maps
 

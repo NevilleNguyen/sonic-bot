@@ -3,4 +3,5 @@ dist/
 *.log
 .DS_Store
 .env
-config/mainnet.json
+data/contacts.json
+data/validators.json

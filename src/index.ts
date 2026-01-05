@@ -11,6 +11,16 @@ const logger = pino({
   },
 });
 
+let bot: SonicBot | null = null;
+
+async function notifyAndExit(reason: string, code: number): Promise<void> {
+  if (bot) {
+    await bot.sendShutdownNotification(reason);
+    await bot.stop();
+  }
+  process.exit(code);
+}
+
 async function main(): Promise<void> {
   // Load configuration
   try {
@@ -22,13 +32,12 @@ async function main(): Promise<void> {
   }
 
   // Create and start bot
-  const bot = new SonicBot();
+  bot = new SonicBot();
 
   // Handle graceful shutdown
   const shutdown = async (signal: string): Promise<void> => {
     logger.info({ signal }, 'Received shutdown signal');
-    await bot.stop();
-    process.exit(0);
+    await notifyAndExit(`Graceful shutdown (${signal})`, 0);
   };
 
   process.on('SIGINT', () => shutdown('SIGINT'));
@@ -36,13 +45,15 @@ async function main(): Promise<void> {
   process.on('SIGQUIT', () => shutdown('SIGQUIT'));
 
   // Handle uncaught errors
-  process.on('uncaughtException', (error) => {
+  process.on('uncaughtException', async (error) => {
     logger.error({ error }, 'Uncaught exception');
-    process.exit(1);
+    await notifyAndExit(`Uncaught exception: ${error.message}`, 1);
   });
 
-  process.on('unhandledRejection', (reason) => {
+  process.on('unhandledRejection', async (reason) => {
     logger.error({ reason }, 'Unhandled rejection');
+    const message = reason instanceof Error ? reason.message : String(reason);
+    await notifyAndExit(`Unhandled rejection: ${message}`, 1);
   });
 
   // Start the bot
@@ -51,11 +62,13 @@ async function main(): Promise<void> {
     logger.info('Sonic bot is running. Press Ctrl+C to stop.');
   } catch (error) {
     logger.error({ error }, 'Failed to start bot');
-    process.exit(1);
+    const message = error instanceof Error ? error.message : String(error);
+    await notifyAndExit(`Failed to start: ${message}`, 1);
   }
 }
 
-main().catch((error) => {
+main().catch(async (error) => {
   logger.error({ error }, 'Fatal error');
-  process.exit(1);
+  const message = error instanceof Error ? error.message : String(error);
+  await notifyAndExit(`Fatal error: ${message}`, 1);
 });
