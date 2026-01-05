@@ -98,5 +98,57 @@
   {
     "address": "0x909C0Bc97dBc8ee1B802d949eBf97B406aedC01F",
     "name": "Ceffu"
+  },
+  {
+    "address": "0x0D0707963952f2fBA59dD06f2b425ace40b492Fe",
+    "name": "Gate"
+  },
+  {
+    "address": "0x9d859Fc0B6d7fF62d37E2a1fd0C0A275C7795CE6",
+    "name": "Bitvavo"
+  },
+  {
+    "address": "0x968F50D98EE29b293aE50b43052a7b14d3846994",
+    "name": "Bithumb"
+  },
+  {
+    "address": "0xf35A6bD6E0459A4B53A27862c51A2A7292b383d1",
+    "name": "CoinSpot"
+  },
+  {
+    "address": "0xD3a22590f8243f8E83Ac230D1842C9Af0404C4A1",
+    "name": "Ceffu"
+  },
+  {
+    "address": "0x17A30350771d02409046A683b18Fe1C13cCFC4A8",
+    "name": "Kucoin"
+  },
+  {
+    "address": "0x1157A2076b9bB22a85CC2C162f20fAB3898F4101",
+    "name": "FalconX"
+  },
+  {
+    "address": "0xE3EcD65cf2aD2Eba2AA2Be1d0894753B2172aBD1",
+    "name": "Bitso"
+  },
+  {
+    "address": "0x18709E89BD403F470088aBDAcEbE86CC60dda12e",
+    "name": "Huobi"
+  },
+  {
+    "address": "0xE66BAa0B612003AF308D78f066Bbdb9a5e00fF6c",
+    "name": "Coinhako"
+  },
+  {
+    "address": "0xb8e6D31e7B212b2b7250EE9c26C56cEBBFBe6B23",
+    "name": "Kucoin"
+  },
+  {
+    "address": "0x8c7Efd5B04331EFC618e8006f19019A3Dc88973e",
+    "name": "CoinDCX"
+  },
+  {
+    "address": "0x4fdFE365436b5273a42F135C6a6244A20404271E",
+    "name": "Binance"
   }
 ]
