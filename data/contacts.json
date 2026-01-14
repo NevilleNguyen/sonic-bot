@@ -1,150 +1,238 @@
 [
   {
-    "address": "0xA4E471dbfe8C95d4c44f520b19CEe436c01c3267",
-    "name": "Binance"
+    "address": "0x1d1a20795949a0f04c3e7cf47e15e1172404e70c",
+    "name": "CoinEx 42"
+  },
+  {
+    "address": "0x7ff8bbf9c8ab106db589e7863fb100525f61cce5",
+    "name": "BloFin: Hot Wallet 1"
   },
   {
     "address": "0x1ab4973a48dc892cd9971ece8e01dcc7688f8f23",
-    "name": "Bitget"
+    "name": "Bitget 6"
   },
   {
-    "address": "0x678cBCa3a5Cc152Ae00F77b85B14151D761b44Be",
+    "address": "0x9ba3560231e3e0ad7dde23106f5b98c72e30b468",
+    "name": "Bilaxy 4"
+  },
+  {
+    "address": "0x05cdb1526f6e224e02919a4c018d9784ea25eb3d",
+    "name": "VALR: Hot Wallet"
+  },
+  {
+    "address": "0xcdd37ada79f589c15bd4f8fd2083dc88e34a2af2",
+    "name": "SideShift: Hot Wallet"
+  },
+  {
+    "address": "0x33a64dcdfa041befebc9161a3e0c6180cd94fa89",
+    "name": "CoinSpot 16"
+  },
+  {
+    "address": "0x14c4017f81675f7ac1321218d4a385a2d3117328",
+    "name": "NDAX 1"
+  },
+  {
+    "address": "0x377b8ce04761754e8ac153b47805a9cf6b190873",
+    "name": "Upbit 59"
+  },
+  {
+    "address": "0xf26ff70573ddc8a90bd7865af8d7d70b8ff019bc",
+    "name": "Eggs Finance: EGGS Token"
+  },
+  {
+    "address": "0x91dca37856240e5e1906222ec79278b16420dc92",
+    "name": "Indodax 3"
+  },
+  {
+    "address": "0x19184ab45c40c2920b0e0e31413b9434abd243ed",
+    "name": "CoinSpot 13"
+  },
+  {
+    "address": "0x000000000000000000000000000000000000dead",
+    "name": "Null: 0x00...dEaD"
+  },
+  {
+    "address": "0x18e226459ccf0eec276514a4fd3b226d8961e4d1",
+    "name": "Binance 107"
+  },
+  {
+    "address": "0x3561607590e28e0848ba3b67074c676d6d1c9953",
+    "name": "Sonic: Swap Bridge"
+  },
+  {
+    "address": "0xc39161c743d0307eb9bcc9fef03eeb9dc4802de7",
+    "name": "LayerZero: ULN Send Lib"
+  },
+  {
+    "address": "0xfc00face00000000000000000000000000000000",
+    "name": "Sonic: SFC contract (Proxy)"
+  },
+  {
+    "address": "0xf977814e90da44bfa03b6295a0616a897441acec",
+    "name": "Binance: Hot Wallet 20"
+  },
+  {
+    "address": "0x0000000000000000000000000000000000000000",
+    "name": "Null: 0x000...000"
+  },
+  {
+    "address": "0x039e2fb66102314ce7b64ce5ce3e5183bc94ad38",
+    "name": "Sonic Labs: wS Token"
+  },
+  {
+    "address": "0xf8fc6d1289734fdffe8b58d8d394b33fe8cc545f",
+    "name": "Sonic: Opera Sonic Migration Bridge Operator"
+  },
+  {
+    "address": "0x678cbca3a5cc152ae00f77b85b14151d761b44be",
     "name": "Bybit"
   },
   {
-    "address": "0x98ADeF6F2ac8572ec48965509d69A8Dd5E8BbA9D",
-    "name": "Binance"
+    "address": "0xf89d7b9c864f589bbf53a82105107622b35eaa40",
+    "name": "Bybit: Hot Wallet"
   },
   {
-    "address": "0x7DAFbA1d69F6C01AE7567Ffd7b046Ca03B706f83",
-    "name": "Kraken"
+    "address": "0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d",
+    "name": "Binance 93"
   },
   {
-    "address": "0xd2DD7b597Fd2435b6dB61ddf48544fd931e6869F",
-    "name": "Kraken"
+    "address": "0x63783f206f22a3eec1e4d0081a49ae419d02ebe4",
+    "name": "Bybit 2"
   },
   {
-    "address": "0xf89d7b9c864f589bbF53a82105107622B35EaA40",
-    "name": "Bybit Hot Wallet"
+    "address": "0x77fb357f55bef5a70d30663955f8c9f35794df0e",
+    "name": "eToro 4"
   },
   {
-    "address": "0x63783f206f22A3eec1E4D0081a49Ae419D02ebe4",
-    "name": "Bybit"
+    "address": "0x7dafba1d69f6c01ae7567ffd7b046ca03b706f83",
+    "name": "Kraken 73"
   },
   {
-    "address": "0x76eC5A0D3632b2133d9f1980903305B62678Fbd3",
+    "address": "0xa4e471dbfe8c95d4c44f520b19cee436c01c3267",
+    "name": "Binance 94"
+  },
+  {
+    "address": "0x76ec5a0d3632b2133d9f1980903305b62678fbd3",
     "name": "BTC Turk"
   },
   {
-    "address": "0x77FB357f55BEf5a70d30663955F8C9f35794DF0E",
-    "name": "eToro"
+    "address": "0xd2dd7b597fd2435b6db61ddf48544fd931e6869f",
+    "name": "Kraken 74"
   },
   {
-    "address": "0x680178D61d910736153991660c5710841C440ec7",
-    "name": "MEXC"
+    "address": "0x680178d61d910736153991660c5710841c440ec7",
+    "name": "MEXC 20"
   },
   {
-    "address": "0x69F57499e75d18d69261d081412e794b33B0E91e",
-    "name": "Kraken"
+    "address": "0x69f57499e75d18d69261d081412e794b33b0e91e",
+    "name": "Kraken 75"
   },
   {
-    "address": "0x095fc6bc0F901e64Ba8170819Bb126ef2F9590cb",
-    "name": "Crypto.com"
+    "address": "0x095fc6bc0f901e64ba8170819bb126ef2f9590cb",
+    "name": "Crypto.com 21"
   },
   {
-    "address": "0x611f7bF868a6212f871e89F7e44684045DdFB09d",
-    "name": "OKX"
+    "address": "0x611f7bf868a6212f871e89f7e44684045ddfb09d",
+    "name": "OKX 1"
   },
   {
-    "address": "0x2B0b6CBbE52F7e14B0d013bC3137F169643eE657",
-    "name": "Crypto.com"
+    "address": "0x2c87f099f80da74998c02212c88435c8e0bd247d",
+    "name": "Binance US 8"
   },
   {
-    "address": "0x2c87f099F80DA74998c02212c88435C8E0bD247D",
-    "name": "Binance US"
+    "address": "0x2b0b6cbbe52f7e14b0d013bc3137f169643ee657",
+    "name": "Crypto.com 22"
   },
   {
-    "address": "0xC882b111A75C0c657fC507C04FbFcD2cC984F071",
-    "name": "Gate"
+    "address": "0xc882b111a75c0c657fc507c04fbfcd2cc984f071",
+    "name": "Gate 5"
   },
   {
-    "address": "0x43684D03D81d3a4C70da68feBDd61029d426F042",
-    "name": "Binance"
+    "address": "0x43684d03d81d3a4c70da68febdd61029d426f042",
+    "name": "Binance 95"
   },
   {
-    "address": "0x77134cbC06cB00b66F4c7e623D5fdBF6777635EC",
-    "name": "Bitfinex"
+    "address": "0xffa8db7b38579e6a2d14f9b347a9ace4d044cd54",
+    "name": "Bitget 23"
   },
   {
-    "address": "0x08A7dadA63b230AE3C4fa9C10B16cA45A1323ee8",
-    "name": "OKX"
+    "address": "0x08a7dada63b230ae3c4fa9c10b16ca45a1323ee8",
+    "name": "OKX 2"
   },
   {
-    "address": "0xF4E6DEEA1B4DA85C2d68DB8d771d37EC1148B853",
-    "name": "Coinhako"
+    "address": "0x77134cbc06cb00b66f4c7e623d5fdbf6777635ec",
+    "name": "Bitfinex: Hot Wallet"
   },
   {
-    "address": "0x0529ea5885702715e83923c59746ae8734c553B7",
-    "name": "Bitpanda"
+    "address": "0x0d0707963952f2fba59dd06f2b425ace40b492fe",
+    "name": "Gate 1"
   },
   {
-    "address": "0xc3681709ee476308b45812EAbE0EB22F3b816880",
-    "name": "Paribu"
+    "address": "0xf4e6deea1b4da85c2d68db8d771d37ec1148b853",
+    "name": "Coinhako 2"
   },
   {
-    "address": "0x909C0Bc97dBc8ee1B802d949eBf97B406aedC01F",
-    "name": "Ceffu"
+    "address": "0xc3681709ee476308b45812eabe0eb22f3b816880",
+    "name": "Paribu 8"
   },
   {
-    "address": "0x0D0707963952f2fBA59dD06f2b425ace40b492Fe",
-    "name": "Gate"
+    "address": "0x909c0bc97dbc8ee1b802d949ebf97b406aedc01f",
+    "name": "Ceffu 1"
   },
   {
-    "address": "0x9d859Fc0B6d7fF62d37E2a1fd0C0A275C7795CE6",
-    "name": "Bitvavo"
+    "address": "0x9d859fc0b6d7ff62d37e2a1fd0c0a275c7795ce6",
+    "name": "Bitvavo 15"
   },
   {
-    "address": "0x968F50D98EE29b293aE50b43052a7b14d3846994",
-    "name": "Bithumb"
+    "address": "0x968f50d98ee29b293ae50b43052a7b14d3846994",
+    "name": "Bithumb 41"
   },
   {
-    "address": "0xf35A6bD6E0459A4B53A27862c51A2A7292b383d1",
-    "name": "CoinSpot"
+    "address": "0x0529ea5885702715e83923c59746ae8734c553b7",
+    "name": "Bitpanda 10"
   },
   {
-    "address": "0xD3a22590f8243f8E83Ac230D1842C9Af0404C4A1",
-    "name": "Ceffu"
+    "address": "0xf35a6bd6e0459a4b53a27862c51a2a7292b383d1",
+    "name": "CoinSpot 1"
   },
   {
-    "address": "0x17A30350771d02409046A683b18Fe1C13cCFC4A8",
-    "name": "Kucoin"
+    "address": "0xe5203be1643465b3c0de28fd2154843497ef4269",
+    "name": "Angles: Vault"
   },
   {
-    "address": "0x1157A2076b9bB22a85CC2C162f20fAB3898F4101",
-    "name": "FalconX"
+    "address": "0xd3a22590f8243f8e83ac230d1842c9af0404c4a1",
+    "name": "Ceffu: Custody Hot Wallet 2"
   },
   {
-    "address": "0xE3EcD65cf2aD2Eba2AA2Be1d0894753B2172aBD1",
-    "name": "Bitso"
+    "address": "0x17a30350771d02409046a683b18fe1c13ccfc4a8",
+    "name": "KuCoin 40"
   },
   {
-    "address": "0x18709E89BD403F470088aBDAcEbE86CC60dda12e",
-    "name": "Huobi"
+    "address": "0xe3ecd65cf2ad2eba2aa2be1d0894753b2172abd1",
+    "name": "Bitso 3"
   },
   {
-    "address": "0xE66BAa0B612003AF308D78f066Bbdb9a5e00fF6c",
-    "name": "Coinhako"
+    "address": "0x18709e89bd403f470088abdacebe86cc60dda12e",
+    "name": "Huobi: Recovery"
   },
   {
-    "address": "0xb8e6D31e7B212b2b7250EE9c26C56cEBBFBe6B23",
-    "name": "Kucoin"
+    "address": "0x1157a2076b9bb22a85cc2c162f20fab3898f4101",
+    "name": "FalconX 1"
   },
   {
-    "address": "0x8c7Efd5B04331EFC618e8006f19019A3Dc88973e",
-    "name": "CoinDCX"
+    "address": "0xe66baa0b612003af308d78f066bbdb9a5e00ff6c",
+    "name": "Coinhako: Warm Wallet"
   },
   {
-    "address": "0x4fdFE365436b5273a42F135C6a6244A20404271E",
-    "name": "Binance"
+    "address": "0xb8e6d31e7b212b2b7250ee9c26c56cebbfbe6b23",
+    "name": "KuCoin 15"
+  },
+  {
+    "address": "0x8c7efd5b04331efc618e8006f19019a3dc88973e",
+    "name": "CoinDCX 8"
+  },
+  {
+    "address": "0x4fdfe365436b5273a42f135c6a6244a20404271e",
+    "name": "Binance 106"
   }
 ]
